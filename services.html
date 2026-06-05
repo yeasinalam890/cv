@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammad Yeasin Alam | Doing Stuff Online & Offline</title>
+    <style>
+        /* KEYFRAMES FOR COMPLETE BOX BACKGROUND & BORDER RGB SHIFT */
+        @keyframes rgbFullGlow {
+            0% { 
+                background-color: rgba(255, 230, 238, 0.94); 
+                border-color: #ff0055; 
+                box-shadow: 6px 6px 20px rgba(255, 0, 85, 0.5); 
+            }
+            33% { 
+                background-color: rgba(230, 255, 250, 0.94); 
+                border-color: #00ffcc; 
+                box-shadow: 6px 6px 20px rgba(0, 255, 204, 0.5); 
+            }
+            66% { 
+                background-color: rgba(243, 230, 255, 0.94); 
+                border-color: #9b51e0; 
+                box-shadow: 6px 6px 20px rgba(155, 81, 224, 0.5); 
+            }
+            100% { 
+                background-color: rgba(255, 230, 238, 0.94); 
+                border-color: #ff0055; 
+                box-shadow: 6px 6px 20px rgba(255, 0, 85, 0.5); 
+            }
+        }
+
+        @keyframes rgbTextGlow {
+            0% { text-shadow: 2px 2px 8px rgba(255, 0, 85, 0.8); }
+            33% { text-shadow: 2px 2px 8px rgba(0, 255, 204, 0.8); }
+            66% { text-shadow: 2px 2px 8px rgba(155, 81, 224, 0.8); }
+            100% { text-shadow: 2px 2px 8px rgba(255, 0, 85, 0.8); }
+        }
+
+        /* Base Formatting */
+        body {
+            font-family: 'Courier New', Courier, monospace; 
+            line-height: 1.6;
+            color: #222;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-image: url('1000076205.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #A3E6D7; 
+        }
+        
+        h1 { 
+            font-size: 3rem; 
+            margin-bottom: 10px; 
+            color: #000; 
+            animation: rgbTextGlow 6s infinite linear;
+        }
+        
+        h2 { 
+            font-size: 1.8rem; 
+            border-bottom: 3px solid #000; 
+            padding-bottom: 5px; 
+            margin-top: 50px; 
+        }
+        
+        .subtitle { 
+            font-size: 1.2rem; 
+            color: #111; 
+            font-style: italic; 
+            font-weight: bold; 
+        }
+
+        /* INTERACTIVE ABOUT ME BUTTON */
+        .about-btn {
+            background: #000;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 12px 24px;
+            border: 3px solid #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px #000;
+            transition: all 0.2s ease;
+            margin-top: 15px;
+        }
+
+        .about-btn:hover {
+            transform: scale(1.05);
+            background: #222;
+        }
+
+        /* SECRET INFO PANEL */
+        .info-panel {
+            display: none;
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        .info-panel.show {
+            display: block;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(0,0,0,0.2);
+        }
+
+        .info-row strong {
+            color: #000;
+        }
+
+        /* RGB ANIMATED CONTAINER BOXES */
+        .project-card, .timeline-item, blockquote, footer, .info-panel, .payment-card { 
+            border: 3px solid #000; 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 12px; 
+            animation: rgbFullGlow 9s infinite ease-in-out; 
+            transition: transform 0.2s ease;
+        }
+
+        .project-card:hover, .timeline-item:hover {
+            transform: translateY(-5px) scale(1.01);
+        }
+
+        /* LINKS STYLING */
+        .socials-box a, .contact-card a {
+            color: #000;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .socials-box a:hover, .contact-card a:hover {
+            color: #ff0055;
+        }
+
+        .skills-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            gap: 15px; 
+            margin-top: 20px; 
+        }
+        
+        .skill-tag { 
+            background: #000; 
+            color: #fff; 
+            padding: 10px; 
+            text-align: center; 
+            font-weight: bold; 
+            border-radius: 6px; 
+        }
+        
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            border: 3px solid #000; 
+            border-radius: 8px; 
+            margin-top: 15px;
+        }
+
+        .qr-code {
+            max-width: 250px;
+            display: block;
+            margin: 15px auto 0 auto;
+        }
+        
+        .timeline { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 35px; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header style="text-align: center;">
+        <h1>Hey, I'm Yeasin! 👋</h1>
+        <p class="subtitle">Student by day, GenZ market observer by night, and full-time tech/media enthusiast.</p>
+        
+        <!-- About Me Toggle Trigger -->
+        <button class="about-btn" onclick="toggleAboutPanel()">✨ Press For Quick Intel</button>
+
+        <!-- Hidden RGB Info Card Dropdown -->
+        <div id="aboutPanel" class="info-panel">
+            <h3 style="margin-top: 0; text-align: center; border-bottom: 2px solid #000; padding-bottom: 5px;">📋 Personal File</h3>
+            <div class="info-row"><strong>Full Name:</strong> <span>Mohammad Yeasin Alam</span></div>
+            <div class="info-row"><strong>D.O.B:</strong> <span>06/08/2008</span></div>
+            <div class="info-row"><strong>Height:</strong> <span>5.5 Feet</span></div>
+            <div class="info-row"><strong>Social Spec:</strong> <span>Introvert 🤫</span></div>
+            <div class="info-row"><strong>Base Station:</strong> <span>Bihar, India 🇮🇳</span></div>
+            <div class="info-row"><strong>Education:</strong> <span>Science (PCB) 🧪</span></div>
+            <div class="info-row"><strong>Goat Game:</strong> <span>Football ⚽</span></div>
+            <div class="info-row"><strong>Contact 1:</strong> <span>+91 9229182600</span></div>
+            <div class="info-row"><strong>Contact 2:</strong> <span>+91 8102445540</span></div>
+        </div>
+
+        <div style="margin: 30px 0;">
+            <img src="1000076204.jpg" alt="Mohammad Yeasin Alam looking sharp next to a waterfall">
+            <p style="font-size: 0.85rem; text-align: center; color: #111; font-weight: bold; margin-top: 10px;">^ Me pretending to look deep while actually thinking about my next travel destination.</p>
+        </div>
+    </header>
+
+    <!-- BIO SECTION -->
+    <section>
+        <h2>Who is this guy? 🤔</h2>
+        <p>I am <strong>Mohammad Yeasin Alam</strong>. Currently navigating the wild world of being a student, but honestly, I wear a lot of hats. If you can't find me studying, I'm probably doing one of three things:</p>
+        <ul>
+            <li>🎮 <strong>Gaming:</strong> Either playing them, watching gameplay streams, or figuring out how they work.</li>
+            <li>🍿 <strong>Binge-Watching:</strong> Deep into a movie rabbit hole or finishing a web series in one sitting.</li>
+            <li>🗣️ <strong>Connecting:</strong> Talking to people, learning what makes them tick, and observing how our generation interacts online.</li>
+        </ul>
+        
+        <blockquote>
+            <strong>My Personal Philosophy:</strong> I like to hear everyone else's statement about a situation first. I don't talk too much—I listen, analyze, and then figure out the smartest move. Maximize listening, minimize noise. 🤫
+        </blockquote>
+    </section>
+
+    <!-- PASSIONS & PROJECTS -->
+    <section>
+        <h2>Things I’m Passionate About ✨</h2>
+        
+        <div class="project-card">
+            <h3>📸 Photography</h3>
+            <p>Capturing moments is my ultimate hobby. Whether it’s landscapes, travel aesthetic shots, or just freezing a memory in time, I like things to look clean. Scroll down to see my aging timeline!</p>
+        </div>
+
+        <div class="project-card">
+            <h3>💼 The Future Business Mogul</h3>
+            <p>My ultimate passion is to become a businessman. I like understanding numbers, tracking how trends move, and figuring out what people actually want to buy. The dream? Building something big enough to fund my <em>other</em> big passion...</p>
+        </div>
+
+        <div class="project-card">
+            <h3>✈️ Worldwide Traveling</h3>
+            <p>I don't just want to stay in one place. I want to see the world, experience new cultures, and take my photography gear global. Life is too short to look at the same scenery forever.</p>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section>
+        <h2>What I’m Actually Good At 🛠️</h2>
+        <p>Sometimes I pay attention in class and online. Here is my current toolkit of skills:</p>
+        <div class="skills-grid">
+            <div class="skill-tag">📈 Analyst</div>
+            <div class="skill-tag">🧾 Accountancy</div>
+            <div class="skill-tag">🤖 AI Expert</div>
+            <div class="skill-tag">⚡ GenZ Market Expert</div>
+        </div>
+    </section>
+
+    <!-- TIMELINE/PHOTO ERA SECTION -->
+    <section>
+        <h2>The Evolution of Yeasin (A Visual History) ⏳</h2>
+        <p>Kantwon has his research archive; I have my visual archive. Here is how I went from a tiny kid in the fields to standing by waterfalls.</p>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>1. The Field Days (The Beginning)</h3>
+                <img src="1000076199.jpg" alt="Little Yeasin in the fields">
+            </div>
+            
+            <div class="timeline-item">
+                <h3>2. The "Early Tech & Gaming" Era</h3>
+                <img src="1000076193.jpg" alt="Young Yeasin playing games on a phone">
+                <p style="margin-top: 10px;"><em>Spoiler alert: This is where my obsession with online entertainment stuff started.</em></p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>3. Exploring Outdoors</h3>
+                <img src="1000076198.jpg" alt="Yeasin on a boat trip">
+            </div>
+
+            <div class="timeline-item">
+                <h3>4. Squad Goals & Travel Roots</h3>
+                <img src="da37ed87-113a-4a0d-944e-1133d24214a7-1_all_25262.jpg" alt="Yeasin hanging out with friends/brothers">
+            </div>
+
+            <div class="timeline-item">
+                <h3>5. Current Look: Traveling in Style</h3>
+                <img src="1000076202.jpg" alt="Yeasin walking down a scenic path with sunglasses">
+                <p style="margin-top: 10px;">Fully leveled up. Ready for the business world and the next flight out. 🛫</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONNECTIONS & SOCIAL LINKS -->
+    <section class="socials-box">
+        <h2>Find Me Across The Web 🌐</h2>
+        <div class="project-card">
+            <p>🔗 <strong>Instagram:</strong> <a href="https://instagram.com/iq_yeasin_00" target="_blank">@iq_yeasin_00</a></p>
+            <p>🔗 <strong>X / Twitter:</strong> <a href="https://x.com/YeasinA15718784" target="_blank">@YeasinA15718784</a></p>
+            <p>🔗 <strong>Reddit:</strong> <a href="https://reddit.com/user/YSN_7" target="_blank">u/YSN_7</a></p>
+            <p>🔗 <strong>Spotify Playlist:</strong> <a href="https://open.spotify.com/user/iq_yeasin_00" target="_blank">iq_yeasin_00</a></p>
+        </div>
+
+        <h2>Get In Touch Direct 📱</h2>
+        <div class="project-card contact-card">
+            <!-- VOICE CALL LAUNCHERS -->
+            <p>📞 <strong>Primary Hotline:</strong> <a href="tel:+919229182600">+91 9229182600</a></p>
+            <p>📞 <strong>Secondary Line:</strong> <a href="tel:+918102445540">+91 8102445540</a></p>
+            <br>
+            <!-- WHATSAPP CHAT LAUNCHERS -->
+            <p>💬 <strong>WhatsApp Line 1:</strong> <a href="https://wa.me/919229182600" target="_blank">Chat on WhatsApp (Primary)</a></p>
+            <p>💬 <strong>WhatsApp Line 2:</strong> <a href="https://wa.me/918102445540" target="_blank">Chat on WhatsApp (Secondary)</a></p>
+            <br>
+            <!-- EMAIL LAUNCHERS -->
+            <p>🔴 <strong>Primary Email:</strong> <a href="mailto:yeasinalam890@gmail.com">yeasinalam890@gmail.com</a></p>
+            <p>🔵 <strong>Secondary Email:</strong> <a href="mailto:yeasinalam7890@gmail.com">yeasinalam7890@gmail.com</a></p>
+            <p>⚪ <strong>Rare Auxiliary Email:</strong> <a href="mailto:yeasinalam901@gmail.com">yeasinalam901@gmail.com</a></p>
+        </div>
+    </section>
+
+    <!-- ULTRA BOTTOM PAYMENT REGISTRY -->
+    <section style="text-align: center; margin-top: 50px;">
+        <h2>Fund My Travels & Tech Projects 💸</h2>
+        <div class="payment-card">
+            <p style="font-weight: bold; margin: 0;">Scan to tip via any UPI app (GPay, PhonePe, Paytm, Navi)</p>
+            <img src="1000076222.jpg" alt="UPI QR Payment Portal" class="qr-code">
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p style="text-align: center; font-weight: bold; margin: 0;">Thanks for stopping by! Let's connect and build something cool. ✌️</p>
+    </footer>
+
+    <!-- INTERACTIVE TOGGLE SCRIPT -->
+    <script>
+        function toggleAboutPanel() {
+            var panel = document.getElementById("aboutPanel");
+            panel.classList.toggle("show");
+        }
+    </script>
+
+</body>
+</html>
