@@ -71,8 +71,8 @@
             font-weight: bold; 
         }
 
-        /* INTERACTIVE ABOUT ME BUTTON */
-        .about-btn {
+        /* INTERACTIVE BUTTON STYLES */
+        .about-btn, .qr-btn {
             background: #000;
             color: #fff;
             font-family: 'Courier New', Courier, monospace;
@@ -87,7 +87,7 @@
             margin-top: 15px;
         }
 
-        .about-btn:hover {
+        .about-btn:hover, .qr-btn:hover {
             transform: scale(1.05);
             background: #222;
         }
@@ -163,10 +163,16 @@
             margin-top: 15px;
         }
 
+        /* QR CODE HIDDEN BY DEFAULT */
         .qr-code {
             max-width: 250px;
-            display: block;
+            display: none; 
             margin: 15px auto 0 auto;
+        }
+
+        /* SHOW CLASS FOR QR CODE */
+        .qr-code.show {
+            display: block;
         }
         
         .timeline { 
@@ -178,15 +184,12 @@
 </head>
 <body>
 
-    <!-- HERO SECTION -->
     <header style="text-align: center;">
         <h1>Hey, I'm Yeasin! 👋</h1>
         <p class="subtitle">Student by day, GenZ market observer by night, and full-time tech/media enthusiast.</p>
         
-        <!-- About Me Toggle Trigger -->
         <button class="about-btn" onclick="toggleAboutPanel()">✨ Press For Quick Intel</button>
 
-        <!-- Hidden RGB Info Card Dropdown -->
         <div id="aboutPanel" class="info-panel">
             <h3 style="margin-top: 0; text-align: center; border-bottom: 2px solid #000; padding-bottom: 5px;">📋 Personal File</h3>
             <div class="info-row"><strong>Full Name:</strong> <span>Mohammad Yeasin Alam</span></div>
@@ -206,7 +209,6 @@
         </div>
     </header>
 
-    <!-- BIO SECTION -->
     <section>
         <h2>Who is this guy? 🤔</h2>
         <p>I am <strong>Mohammad Yeasin Alam</strong>. Currently navigating the wild world of being a student, but honestly, I wear a lot of hats. If you can't find me studying, I'm probably doing one of three things:</p>
@@ -221,7 +223,6 @@
         </blockquote>
     </section>
 
-    <!-- PASSIONS & PROJECTS -->
     <section>
         <h2>Things I’m Passionate About ✨</h2>
         
@@ -241,7 +242,6 @@
         </div>
     </section>
 
-    <!-- SKILLS SECTION -->
     <section>
         <h2>What I’m Actually Good At 🛠️</h2>
         <p>Sometimes I pay attention in class and online. Here is my current toolkit of skills:</p>
@@ -253,7 +253,6 @@
         </div>
     </section>
 
-    <!-- TIMELINE/PHOTO ERA SECTION -->
     <section>
         <h2>The Evolution of Yeasin (A Visual History) ⏳</h2>
         <p>Kantwon has his research archive; I have my visual archive. Here is how I went from a tiny kid in the fields to standing by waterfalls.</p>
@@ -288,7 +287,6 @@
         </div>
     </section>
 
-    <!-- CONNECTIONS & SOCIAL LINKS -->
     <section class="socials-box">
         <h2>Find Me Across The Web 🌐</h2>
         <div class="project-card">
@@ -300,40 +298,42 @@
 
         <h2>Get In Touch Direct 📱</h2>
         <div class="project-card contact-card">
-            <!-- VOICE CALL LAUNCHERS -->
             <p>📞 <strong>Primary Hotline:</strong> <a href="tel:+919229182600">+91 9229182600</a></p>
             <p>📞 <strong>Secondary Line:</strong> <a href="tel:+918102445540">+91 8102445540</a></p>
             <br>
-            <!-- WHATSAPP CHAT LAUNCHERS -->
             <p>💬 <strong>WhatsApp Line 1:</strong> <a href="https://wa.me/919229182600" target="_blank">Chat on WhatsApp (Primary)</a></p>
             <p>💬 <strong>WhatsApp Line 2:</strong> <a href="https://wa.me/918102445540" target="_blank">Chat on WhatsApp (Secondary)</a></p>
             <br>
-            <!-- EMAIL LAUNCHERS -->
             <p>🔴 <strong>Primary Email:</strong> <a href="mailto:yeasinalam890@gmail.com">yeasinalam890@gmail.com</a></p>
             <p>🔵 <strong>Secondary Email:</strong> <a href="mailto:yeasinalam7890@gmail.com">yeasinalam7890@gmail.com</a></p>
             <p>⚪ <strong>Rare Auxiliary Email:</strong> <a href="mailto:yeasinalam901@gmail.com">yeasinalam901@gmail.com</a></p>
         </div>
     </section>
 
-    <!-- ULTRA BOTTOM PAYMENT REGISTRY -->
     <section style="text-align: center; margin-top: 50px;">
         <h2>Fund My Travels & Tech Projects 💸</h2>
         <div class="payment-card">
-            <p style="font-weight: bold; margin: 0;">Scan to tip via any UPI app (GPay, PhonePe, Paytm, Navi)</p>
-            <img src="1000076222.jpg" alt="UPI QR Payment Portal" class="qr-code">
+            <p style="font-weight: bold; margin-bottom: 15px;">Scan to tip via any UPI app (GPay, PhonePe, Paytm, Navi)</p>
+            
+            <button class="qr-btn" onclick="toggleQrCode()">Toggle QR Code 💳</button>
+            
+            <img id="paymentQr" src="1000076222.jpg" alt="UPI QR Payment Portal" class="qr-code">
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <p style="text-align: center; font-weight: bold; margin: 0;">Thanks for stopping by! Let's connect and build something cool. ✌️</p>
     </footer>
 
-    <!-- INTERACTIVE TOGGLE SCRIPT -->
     <script>
         function toggleAboutPanel() {
             var panel = document.getElementById("aboutPanel");
             panel.classList.toggle("show");
+        }
+
+        function toggleQrCode() {
+            var qr = document.getElementById("paymentQr");
+            qr.classList.toggle("show");
         }
     </script>
 
