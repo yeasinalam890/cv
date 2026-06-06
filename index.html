@@ -36,6 +36,73 @@
             100% { text-shadow: 2px 2px 8px rgba(255, 0, 85, 0.8); }
         }
 
+        /* WAVE ANIMATION FOR THE HIGH-FIVE/WAVE EMOJI */
+        @keyframes actualWave {
+            0% { transform: rotate( 0.0deg) }
+            10% { transform: rotate(14.0deg) }
+            20% { transform: rotate(-8.0deg) }
+            30% { transform: rotate(14.0deg) }
+            40% { transform: rotate(-4.0deg) }
+            50% { transform: rotate(10.0deg) }
+            60% { transform: rotate( 0.0deg) }
+            100% { transform: rotate( 0.0deg) }
+        }
+
+        .waving-animation {
+            animation: actualWave 1.2s ease-in-out;
+        }
+
+        /* CUSTOM MODAL POPUP STYLES */
+        .custom-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 60% auto; 
+            padding: 20px;
+            border: 3px solid #000;
+            width: 80%;
+            max-width: 320px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 6px 6px 0px #000;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: #000;
+            font-size: 1.4rem;
+            border-bottom: 2px dashed #000;
+            padding-bottom: 8px;
+        }
+
+        .modal-content p {
+            font-size: 1.05rem;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .modal-btn {
+            background: #000;
+            color: #fff;
+            border: 2px solid #000;
+            padding: 8px 25px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
         /* Base Formatting */
         body {
             font-family: 'Courier New', Courier, monospace; 
@@ -55,6 +122,16 @@
             margin-bottom: 10px; 
             color: #000; 
             animation: rgbTextGlow 6s infinite linear;
+        }
+
+        #waveEmoji {
+            transition: transform 0.2s ease;
+        }
+        #waveEmoji:hover {
+            transform: scale(1.2);
+        }
+        #waveEmoji:active {
+            transform: scale(0.9);
         }
         
         h2 { 
@@ -185,7 +262,7 @@
 <body>
 
     <header style="text-align: center;">
-        <h1>Hey, I'm Yeasin! 👋</h1>
+        <h1>Hey, I'm Yeasin! <span id="waveEmoji" onclick="waveBack()" style="cursor: pointer; display: inline-block; user-select: none;">👋</span></h1>
         <p class="subtitle">Student by day, GenZ market observer by night, and full-time tech/media enthusiast.</p>
         
         <button class="about-btn" onclick="toggleAboutPanel()">✨ Press For Quick Intel</button>
@@ -215,7 +292,7 @@
         <ul>
             <li>🎮 <strong>Gaming:</strong> Either playing them, watching gameplay streams, or figuring out how they work.</li>
             <li>🍿 <strong>Binge-Watching:</strong> Deep into a movie rabbit hole or finishing a web series in one sitting.</li>
-            <li>🗣️ <strong>Connecting:</strong> Talking to people, learning what makes them tick, and observing how our generation interacts online.</li>
+            <li>🗣 { <strong>Connecting:</strong> Talking to people, learning what makes them tick, and observing how our generation interacts online.</li>
         </ul>
         
         <blockquote>
@@ -321,6 +398,14 @@
         </div>
     </section>
 
+    <div id="customAlert" class="custom-modal">
+        <div class="modal-content">
+            <h3>Hi, I'm Yeasin 👋</h3>
+            <p>Nice 2 meet u & thanks 4 check out ✌️</p>
+            <button class="modal-btn" onclick="closeCustomAlert()">OK</button>
+        </div>
+    </div>
+
     <footer>
         <p style="text-align: center; font-weight: bold; margin: 0;">Thanks for stopping by! Let's connect and build something cool. ✌️</p>
     </footer>
@@ -334,6 +419,26 @@
         function toggleQrCode() {
             var qr = document.getElementById("paymentQr");
             qr.classList.toggle("show");
+        }
+
+        // RESPOND TO EMOJI CLICKS VISUALLY AND LOGICALLY
+        function waveBack() {
+            var emoji = document.getElementById("waveEmoji");
+            emoji.classList.add("waving-animation");
+
+            // Opens the brand new completely custom overlay modal popup without "This page says"
+            setTimeout(function() {
+                document.getElementById("customAlert").style.display = "block";
+            }, 200);
+
+            // Resets structural animation classes securely
+            setTimeout(function() {
+                emoji.classList.remove("waving-animation");
+            }, 1300);
+        }
+
+        function closeCustomAlert() {
+            document.getElementById("customAlert").style.display = "none";
         }
     </script>
 
