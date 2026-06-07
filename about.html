@@ -790,8 +790,30 @@
                 // Fire up sandbox container and inject code inside the iframe context
                 paneContainer.style.display = "block";
                 const targetFrameDoc = sandboxIframe.contentDocument || sandboxIframe.contentWindow.document;
+                
                 targetFrameDoc.open();
-                targetFrameDoc.write(codeRaw);
+                // Strict isolation script rewrite to stop outside variables leaking color inside the iframe window
+                const isolatedContent = `
+                    <html>
+                    <head>
+                        <style>
+                            html, body { 
+                                background-color: #ffffff !important; 
+                                color: #000000 !important; 
+                                font-family: sans-serif;
+                                padding: 10px;
+                                margin: 0;
+                            }
+                            /* Reset local root variable leaks if fragments are pasted */
+                            :root { --text-color: #000 !important; --bg-color: #fff !important; }
+                        </style>
+                    </head>
+                    <body>
+                        ${codeRaw}
+                    </body>
+                    </html>
+                `;
+                targetFrameDoc.write(isolatedContent);
                 targetFrameDoc.close();
 
                 inputArea.value = ''; // Clean input
