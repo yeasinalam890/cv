@@ -250,7 +250,7 @@
             background-image: url('1000076205.jpg'); background-size: cover; background-attachment: fixed;
             background-color: var(--bg-color); transition: background-color 0.3s, color 0.3s;
         }
-        
+
         h1 { font-size: 3rem; margin-bottom: 10px; color: var(--header-color); animation: rgbTextGlow 6s infinite linear; display: inline-block; }
         h1:hover { animation: textGlitch 0.3s infinite linear; }
         h2 { font-size: 1.8rem; border-bottom: 3px solid var(--border-color); padding-bottom: 5px; margin-top: 50px; color: var(--header-color); }
@@ -276,9 +276,9 @@
         .socials-box a, .contact-card a { color: #000; font-weight: bold; text-decoration: underline; }
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
         .skill-tag { background: var(--border-color); color: var(--bg-color); padding: 10px; text-align: center; font-weight: bold; border-radius: 6px; }
-        
+
         img { max-width: 100%; height: auto; border: 3px solid var(--border-color); border-radius: 8px; margin-top: 15px; filter: invert(var(--invert-val)); }
-        
+
         .qr-code { max-width: 250px; display: none; margin: 15px auto 0 auto; }
         .qr-code.show { display: block; }
         .timeline { display: flex; flex-direction: column; gap: 35px; }
@@ -291,14 +291,14 @@
 
     <div id="gameWidgetBtn" class="draggable-widget" title="Launch YSN Arcade Engine [Key: G]">🎮</div>
     <div id="musicWidgetBtn" class="draggable-widget" title="Open Music Library [Key: M]">🎵</div>
-    
+
     <div id="musicPanel" class="music-library-panel">
         <div class="panel-ui-header" id="musicHeader">
             <span>YSN Radio 🎧</span>
             <button class="panel-ui-close" onclick="toggleMusicPanel()">X</button>
         </div>
         <div class="panel-ui-content">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/playlist/7nMUentFkCzGn7RZBbvHLC?si=uol2W9LGQcmmUG0DMWSrYg&pi=lJw2SjGeR0qns&nd=1&utm_medium=organic&product=open&%24full_url=https%3A%2F%2Fopen.spotify.com%2Fplaylist%2F7nMUentFkCzGn7RZBbvHLC%3Fsi%3Duol2W9LGQcmmUG0DMWSrYg%26pi%3DlJw2SjGeR0qns&feature=organic&_branch_match_id=1592159404917108919&_branch_referrer=H4sIAAAAAAAAA8WOUUvDMBSFf0362M5UHBOKaEc7xvbgxhj6MtLsto29TbKbxDEf%2FO2mgr9BOA%2BH7%2BPA6b237jHLnDVetbdUWJui0kP2ZMmcg%2FSFsaATxu%2FbgHgKhEU%2FTVj%2BzHgVM%2Bn0by3NGJFFcUPlfKxzvT2A9tVQftV6vnt%2FaT5Xm5LllVMsXwaD%2FLjY1K9yHA%2F1bLk97umtY%2FzBThbXV77%2FqGE3u2j3%2B0AgNkIO%2F%2FciQn2O8C5pQfhAUBjqhFYy%2BSZogUjp7tSQuTqgouzJjPAD9TGN0WEBAAA%3D" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7nMUed26v4U79L7m129Dlm?si=WHYjIL7dTVi1dOTH3jt3rg" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
     </div>
 
@@ -312,7 +312,7 @@
                 <span>Score: <span id="currentScore" style="color:#00ff66">0</span></span>
                 <span>Max: <span id="highScore" style="color:#ff0055">0</span></span>
             </div>
-            
+
             <div class="canvas-container">
                 <canvas id="snakeCanvas" width="280" height="180"></canvas>
             </div>
@@ -333,13 +333,13 @@
     <header style="text-align: center;">
         <h1>Hey, I'm Yeasin! <span id="waveEmoji" onclick="waveBack()" style="cursor: pointer; display: inline-block; user-select: none;">👋</span></h1>
         <p class="subtitle">Student by day, GenZ market observer by night, and full-time tech/media enthusiast.</p>
-        
+
         <div class="status-badge">
             <div class="status-dot"></div>
             <span id="liveStatusText">Live Sync: Analyzing market trends 📈</span>
         </div>
         <br>
-        
+
         <button class="about-btn" onclick="toggleAboutPanel()">✨ Press For Quick Intel [Key: A]</button>
 
         <div id="aboutPanel" class="info-panel">
@@ -367,9 +367,9 @@
         <ul>
             <li>🎮 <strong>Gaming:</strong> Either playing them, watching gameplay streams, or figuring out how they work.</li>
             <li>🍿 <strong>Binge-Watching:</strong> Deep into a movie rabbit hole or finishing a web series in one sitting.</li>
-            <li>🗣️ { <strong>Connecting:</strong> Talking to people, learning what makes them tick, and observing how our generation interacts online.</li>
+            <li>🗣️ <strong>Connecting:</strong> Talking to people, learning what makes them tick, and observing how our generation interacts online.</li>
         </ul>
-        
+
         <blockquote>
             <strong>My Personal Philosophy:</strong> I like to hear everyone else's statement about a situation first. I don't talk too much—I listen, analyze, and then figure out the smartest move. Maximize listening, minimize noise. 🤫
         </blockquote>
@@ -377,7 +377,7 @@
 
     <section>
         <h2>Things I’m Passionate About ✨</h2>
-        
+
         <div class="project-card">
             <h3>📸 Photography</h3>
             <p>Capturing moments is my ultimate hobby. Whether it’s landscapes, travel aesthetic shots, or just freezing a memory in time, I like things to look clean. Scroll down to see my aging timeline!</p>
@@ -408,7 +408,7 @@
     <section>
         <h2>The Evolution of Yeasin (A Visual History) ⏳</h2>
         <p>Kantwon has his research archive; I have my visual archive. Here is how I went from a tiny kid in the fields to standing by waterfalls.</p>
-        
+
         <div class="timeline">
             <div class="timeline-item">
                 <h3>1. The Field Days (The Beginning)</h3>
@@ -445,7 +445,7 @@
             <p>🔗 <strong>Instagram:</strong> <a href="https://instagram.com/iq_yeasin_00" target="_blank">@iq_yeasin_00</a></p>
             <p>🔗 <strong>X / Twitter:</strong> <a href="https://x.com/YeasinA15718784" target="_blank">@YeasinA15718784</a></p>
             <p>🔗 <strong>Reddit:</strong> <a href="https://reddit.com/user/YSN_7" target="_blank">u/YSN_7</a></p>
-            <p>🔗 <strong>Spotify Playlist:</strong> <a href="https://open.spotify.com/playlist/7nMUe" target="_blank">iq_yeasin_00</a></p>
+            <p>🔗 <strong>Spotify Playlist:</strong> <a href="https://open.spotify.com/playlist/7nMUentFkCzGn7RZBbvHLC?si=uol2W9LGQcmmUG0DMWSrYg&pi=lJw2SjGeR0qns&nd=1&utm_medium=organic&product=open&%24full_url=https%3A%2F%2Fopen.spotify.com%2Fplaylist%2F7nMUentFkCzGn7RZBbvHLC%3Fsi%3Duol2W9LGQcmmUG0DMWSrYg%26pi%3DlJw2SjGeR0qns&feature=organic&_branch_match_id=1592159404917108919&_branch_referrer=H4sIAAAAAAAAA8WOUUvDMBSFf0362M5UHBOKaEc7xvbgxhj6MtLsto29TbKbxDEf%2FO2mgr9BOA%2BH7%2BPA6b237jHLnDVetbdUWJui0kP2ZMmcg%2FSFsaATxu%2FbgHgKhEU%2FTVj%2BzHgVM%2Bn0by3NGJFFcUPlfKxzvT2A9tVQftV6vnt%2FaT5Xm5LllVMsXwaD%2FLjY1K9yHA%2F1bLk97umtY%2FzBThbXV77%2FqGE3u2j3%2B0AgNkIO%2F%2FciQn2O8C5pQfhAUBjqhFYy%2BSZogUjp7tSQuTqgouzJjPAD9TGN0WEBAAA%3D&flow_ctx=4bb8cf2d-7dfb-49bc-9ebb-20ff743ac174%3A1780862029" target="_blank">iq_yeasin_00</a></p>
         </div>
 
         <h2>Get In Touch Direct 📱</h2>
@@ -567,14 +567,13 @@
         makeElementDraggable(document.getElementById("gameWidgetBtn"), document.getElementById("gameWidgetBtn"));
 
         // Click actions for draggable widgets
+        let dragThresholdX = 0, dragThresholdY = 0;
         document.getElementById("musicWidgetBtn").addEventListener('click', (e) => {
-            if (Math.abs(pos1) < 2 && Math.abs(pos2) < 2) toggleMusicPanel();
+            toggleMusicPanel();
         });
         document.getElementById("gameWidgetBtn").addEventListener('click', (e) => {
-            if (Math.abs(pos1) < 2 && Math.abs(pos2) < 2) toggleArcadePanel();
+            toggleArcadePanel();
         });
-
-        let pos1 = 0, pos2 = 0; // Tracking thresholds
 
         // Keyboard hotkeys tracking logic setup
         document.addEventListener('keydown', (e) => {
