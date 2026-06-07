@@ -295,8 +295,8 @@
             transition: transform 0.1s;
         }
 
-        /* COMPILER TERMINAL OVERVIEW UPGRADED MODULE */
-        .terminal-box {
+        /* NOKIA RETRO SNAKE ARCADE STYLES */
+        .arcade-box {
             background: #0d0e12;
             color: #00ff66;
             border: 3px solid #00ff66;
@@ -304,78 +304,54 @@
             font-family: 'Courier New', Courier, monospace;
             padding: 15px;
             margin: 30px 0;
-            text-align: left;
+            text-align: center;
             box-shadow: 5px 5px 0px #00ff66;
         }
-        .terminal-header {
+        .arcade-header {
             border-bottom: 2px dashed #00ff66;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
             font-weight: bold;
             display: flex;
             justify-content: space-between;
+            font-size: 1.1rem;
         }
-        .terminal-logs {
-            max-height: 220px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-            line-height: 1.4;
-            border-bottom: 1px dashed rgba(0, 255, 102, 0.3);
-            padding-bottom: 10px;
-        }
-        .terminal-input-row {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .terminal-field-textarea {
+        .canvas-container {
+            display: inline-block;
             background: #14161d;
-            border: 1px solid #00ff66;
-            border-radius: 4px;
-            color: #00ff66;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
-            width: 100%;
-            height: 80px;
-            padding: 8px;
-            outline: none;
-            resize: vertical;
-            box-sizing: border-box;
+            border: 2px solid #00ff66;
+            padding: 2px;
+            line-height: 0;
         }
-        .terminal-action-btn {
-            background: #00ff66;
-            color: #0d0e12;
-            border: none;
-            padding: 6px 16px;
+        #snakeCanvas {
+            background: #1a1d24;
+            max-width: 100%;
+        }
+        .arcade-controls {
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(3, 50px);
+            grid-template-rows: repeat(2, 45px);
+            gap: 6px;
+            justify-content: center;
+        }
+        .arcade-btn {
+            background: #14161d;
+            color: #00ff66;
+            border: 2px solid #00ff66;
             font-family: 'Courier New', Courier, monospace;
             font-weight: bold;
+            font-size: 1.2rem;
             border-radius: 4px;
             cursor: pointer;
-            align-self: flex-end;
-            transition: transform 0.1s;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .terminal-action-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* LIVE CODE PREVIEW SANDBOX SCREEN */
-        .preview-pane-container {
-            margin-top: 15px;
-            display: none;
-        }
-        .preview-pane-title {
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: #00ff66;
-            margin-bottom: 4px;
-        }
-        .preview-iframe-frame {
-            width: 100%;
-            height: 250px;
-            background: #ffffff;
-            border: 2px dashed #00ff66;
-            border-radius: 4px;
+        .arcade-btn:active {
+            background: #00ff66;
+            color: #0d0e12;
         }
 
         /* Base Formatting */
@@ -664,25 +640,22 @@
     </section>
 
     <section>
-        <h2>Project Compiler Terminal 🖥️</h2>
-        <div class="terminal-box">
-            <div class="terminal-header">
-                <span>YSN-OS Code Analyzer v2.0.0</span>
-                <span id="livePulseCounter" style="color:#ff0055">Nodes Active: 1430</span>
+        <h2>YSN Arcade Terminal 🎮</h2>
+        <div class="arcade-box">
+            <div class="arcade-header">
+                <span>SNAKE_CORE.EXE v3.1</span>
+                <span>Score: <span id="currentScore" style="color:#00ff66">0</span> | Max: <span id="highScore" style="color:#ff0055">0</span></span>
             </div>
-            <div class="terminal-logs" id="terminalLogs">
-                > YSN Core initialization complete.<br>
-                > Terminal diagnostics online.<br>
-                > Ready for inspection. Paste raw source code below...<br>
-            </div>
-            <div class="terminal-input-row">
-                <textarea id="terminalCodeInput" class="terminal-field-textarea" placeholder="Paste HTML/CSS/JS source architecture code blocks here..."></textarea>
-                <button class="terminal-action-btn" onclick="analyzeCodeStructure()">Analyze Code</button>
+            
+            <div class="canvas-container">
+                <canvas id="snakeCanvas" width="280" height="200"></canvas>
             </div>
 
-            <div class="preview-pane-container" id="previewPaneContainer">
-                <div class="preview-pane-title">> LIVE GRAPHICAL INTERFACE PREVIEW:</div>
-                <iframe id="previewIframeSandbox" class="preview-iframe-frame" sandbox="allow-scripts"></iframe>
+            <div class="arcade-controls">
+                <div style="grid-column: 2;"><button class="arcade-btn" onclick="changeDirection('UP')">▲</button></div>
+                <div style="grid-column: 1; grid-row: 2;"><button class="arcade-btn" onclick="changeDirection('LEFT')">◀</button></div>
+                <div style="grid-column: 2; grid-row: 2;"><button class="arcade-btn" onclick="changeDirection('DOWN')">▼</button></div>
+                <div style="grid-column: 3; grid-row: 2;"><button class="arcade-btn" onclick="changeDirection('RIGHT')">▶</button></div>
             </div>
         </div>
     </section>
@@ -716,12 +689,16 @@
 
         // HARDWARE SYSTEM KEYBIND MANAGEMENT
         document.addEventListener('keydown', (e) => {
-            if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
-            
             const key = e.key.toLowerCase();
             if (key === 't') toggleMatrixTheme();
             if (key === 'm') toggleMusicPanel();
             if (key === 'a') toggleAboutPanel();
+
+            // Arrow keys handle snake direction mapping
+            if (e.key === 'ArrowUp') { changeDirection('UP'); e.preventDefault(); }
+            if (e.key === 'ArrowDown') { changeDirection('DOWN'); e.preventDefault(); }
+            if (e.key === 'ArrowLeft') { changeDirection('LEFT'); e.preventDefault(); }
+            if (e.key === 'ArrowRight') { changeDirection('RIGHT'); e.preventDefault(); }
         });
 
         // MATRIX TERMINAL STATE CHANGE
@@ -744,80 +721,90 @@
         setInterval(() => {
             const index = Math.floor(Math.random() * statusPool.length);
             document.getElementById('liveStatusText').innerText = statusPool[index];
-            
-            const nodes = Math.floor(Math.random() * (1450 - 1410) + 1410);
-            document.getElementById('livePulseCounter').innerText = `Nodes Active: ${nodes}`;
         }, 7000);
 
-        // NATIVE PARSING ENGINE FOR CODE OVERVIEW DEFINITIONS & LIVE PREVIEW INJECTION
-        function analyzeCodeStructure() {
-            const inputArea = document.getElementById('terminalCodeInput');
-            const logsDisplay = document.getElementById('terminalLogs');
-            const paneContainer = document.getElementById('previewPaneContainer');
-            const sandboxIframe = document.getElementById('previewIframeSandbox');
-            const codeRaw = inputArea.value.trim();
+        // RETRO NOKIA SNAKE SIMULATION MATRIX ENGINE
+        const canvas = document.getElementById('snakeCanvas');
+        const ctx = canvas.getContext('2d');
+        const scale = 10;
+        const rows = canvas.height / scale;
+        const columns = canvas.width / scale;
 
-            if (!codeRaw) {
-                logsDisplay.innerHTML += `<span style="color:#ff0055">> [ERROR]: Code stream target is empty. Execution aborted.</span><br>`;
-                logsDisplay.scrollTop = logsDisplay.scrollHeight;
+        let snake = [{x: 5 * scale, y: 5 * scale}];
+        let food = {x: 12 * scale, y: 10 * scale};
+        let dX = scale;
+        let dY = 0;
+        let score = 0;
+        let hiScore = localStorage.getItem('ysnSnakeHi') || 0;
+        document.getElementById('highScore').innerText = hiScore;
+
+        let gameLoopInterval = setInterval(gameStep, 100);
+
+        function gameStep() {
+            // Update positions
+            const head = {x: snake[0].x + dX, y: snake[ headY = snake[0].y + dY]};
+            head.y = snake[0].y + dY; // assign safety pathing axis
+
+            // Check boundaries wall collisions
+            if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height || checkSelfCollision(head)) {
+                resetSnakeGame();
                 return;
             }
 
-            // Processing notification lines
-            logsDisplay.innerHTML += `> [SYSTEM]: Compiling stream sequence... Length: ${codeRaw.length} chars.<br>`;
-            logsDisplay.innerHTML += `> [SYSTEM]: Injecting active frame rendering instances...<br>`;
+            snake.unshift(head);
+
+            // Food collision evaluation
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                document.getElementById('currentScore').innerText = score;
+                if(score > hiScore) {
+                    hiScore = score;
+                    localStorage.setItem('ysnSnakeHi', hiScore);
+                    document.getElementById('highScore').innerText = hiScore;
+                }
+                generateFoodCoordinates();
+            } else {
+                snake.pop();
+            }
+
+            // Canvas drawing pipeline
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Metric counts extraction variables
-            const lineCount = codeRaw.split('\n').length;
-            const scriptsFound = (codeRaw.match(/<script/gi) || []).length;
-            const stylesFound = (codeRaw.match(/<style|class=|id=/gi) || []).length;
-            const linkCount = (codeRaw.match(/href=|src=/gi) || []).length;
+            // Draw Target Food Node
+            ctx.fillStyle = '#ff0055';
+            ctx.fillRect(food.x, food.y, scale, scale);
 
-            // Render Overview Text & Execute Frame Preview concurrently
-            setTimeout(() => {
-                let overviewReport = `
-<br><span style="color:#ffff00">=== PROJECT STRUCTURAL OVERVIEW ===</span><br>
-• Total Code Volume : ${lineCount} explicit syntax lines.<br>
-• Script Logic Components : ${scriptsFound > 0 ? scriptsFound + ' engines mapped' : 'None detected'}.<br>
-• Structural Styling Hooks : ${stylesFound} target rules mapped.<br>
-• Asset Resource Pipes   : ${linkCount} linked files/URLs discovered.<br>
---------------------------------------------------<br>
-<span style="color:#00ff66">> [STATUS]: Execution complete. Visual frame updated below.</span><br><br>
-`;
-                logsDisplay.innerHTML += overviewReport;
-                logsDisplay.scrollTop = logsDisplay.scrollHeight;
+            // Draw Snake Segments
+            ctx.fillStyle = '#00ff66';
+            snake.forEach(seg => ctx.fillRect(seg.x, seg.y, scale, scale));
+        }
 
-                // Fire up sandbox container and inject code inside the iframe context
-                paneContainer.style.display = "block";
-                const targetFrameDoc = sandboxIframe.contentDocument || sandboxIframe.contentWindow.document;
-                
-                targetFrameDoc.open();
-                // Strict isolation script rewrite to stop outside variables leaking color inside the iframe window
-                const isolatedContent = `
-                    <html>
-                    <head>
-                        <style>
-                            html, body { 
-                                background-color: #ffffff !important; 
-                                color: #000000 !important; 
-                                font-family: sans-serif;
-                                padding: 10px;
-                                margin: 0;
-                            }
-                            /* Reset local root variable leaks if fragments are pasted */
-                            :root { --text-color: #000 !important; --bg-color: #fff !important; }
-                        </style>
-                    </head>
-                    <body>
-                        ${codeRaw}
-                    </body>
-                    </html>
-                `;
-                targetFrameDoc.write(isolatedContent);
-                targetFrameDoc.close();
+        function changeDirection(dir) {
+            if (dir === 'UP' && dY === 0) { dX = 0; dY = -scale; }
+            if (dir === 'DOWN' && dY === 0) { dX = 0; dY = scale; }
+            if (dir === 'LEFT' && dX === 0) { dX = -scale; dY = 0; }
+            if (dir === 'RIGHT' && dX === 0) { dX = scale; dY = 0; }
+        }
 
-                inputArea.value = ''; // Clean input
-            }, 800);
+        function generateFoodCoordinates() {
+            food.x = Math.floor(Math.random() * columns) * scale;
+            food.y = Math.floor(Math.random() * rows) * scale;
+        }
+
+        function checkSelfCollision(head) {
+            for(let i = 1; i < snake.length; i++) {
+                if (head.x === snake[i].x && head.y === snake[i].y) return true;
+            }
+            return false;
+        }
+
+        function resetSnakeGame() {
+            snake = [{x: 5 * scale, y: 5 * scale}];
+            dX = scale;
+            dY = 0;
+            score = 0;
+            document.getElementById('currentScore').innerText = score;
+            generateFoodCoordinates();
         }
 
         function toggleAboutPanel() {
