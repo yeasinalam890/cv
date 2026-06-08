@@ -353,7 +353,6 @@
         </div>
     </div>
 
-    <!-- SPOTIFY PANEL SECTION -->
     <div id="musicPanel" class="arcade-panel-box">
         <div class="panel-ui-header" id="musicHeader">
             <span>GUEST_TAB.EXE - Spotify Section</span>
@@ -711,26 +710,29 @@
             // If typing into search bar, don't trigger hotkeys or turn snake
             if (e.target.tagName === 'INPUT') return; 
 
-            // Handle standard key controls for the Snake game
-            if (e.key === 'ArrowLeft' || e.key === 'Left') {
+            // SMART TV REMOTE LAYER CAPTURING ENGINE (Supports KeyNames & absolute hardware keyCodes)
+            const inputToken = e.key;
+            const inputSignal = e.keyCode || e.which;
+
+            if (inputToken === 'ArrowLeft' || inputToken === 'Left' || inputSignal === 37) {
                 e.preventDefault();
                 changeDirection('LEFT');
-            } else if (e.key === 'ArrowUp' || e.key === 'Up') {
+            } else if (inputToken === 'ArrowUp' || inputToken === 'Up' || inputSignal === 38) {
                 e.preventDefault();
                 changeDirection('UP');
-            } else if (e.key === 'ArrowRight' || e.key === 'Right') {
+            } else if (inputToken === 'ArrowRight' || inputToken === 'Right' || inputSignal === 39) {
                 e.preventDefault();
                 changeDirection('RIGHT');
-            } else if (e.key === 'ArrowDown' || e.key === 'Down') {
+            } else if (inputToken === 'ArrowDown' || inputToken === 'Down' || inputSignal === 40) {
                 e.preventDefault();
                 changeDirection('DOWN');
             }
 
             // Universal interface shortcuts
-            if (e.key.toLowerCase() === 't') toggleMatrixTheme();
-            if (e.key.toLowerCase() === 'g') toggleArcadePanel();
-            if (e.key.toLowerCase() === 'm') toggleMusicPanel();
-            if (e.key.toLowerCase() === 'a') toggleAboutPanel();
+            if (inputToken.toLowerCase() === 't') toggleMatrixTheme();
+            if (inputToken.toLowerCase() === 'g') toggleArcadePanel();
+            if (inputToken.toLowerCase() === 'm') toggleMusicPanel();
+            if (inputToken.toLowerCase() === 'a') toggleAboutPanel();
         });
 
         // Basic Retro Snake implementation properties
